@@ -1,5 +1,7 @@
 package com.mycompany;
 
+import com.wordnik.swagger.annotations.Api;
+import com.wordnik.swagger.annotations.ApiOperation;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
@@ -11,6 +13,7 @@ import java.util.List;
  */
 @Controller
 @RequestMapping("/orders")
+//@Api(value="/orders",description = "Order Service which provides CRUD operation for Order Resource")
 public class OrderController {
 
     private static List<Order> orders = new ArrayList<Order>();
@@ -20,8 +23,9 @@ public class OrderController {
         orders.add(new Order(2,"Order No. 2",200.22));
     }
 
-    @RequestMapping
+    @RequestMapping(method = RequestMethod.GET)
     @ResponseBody
+//    @ApiOperation(value="/",notes = "Return All Orders !!!", response = List.class, responseContainer = "List")
     public List<Order> getAllOrders(){
         return orders;
     }
